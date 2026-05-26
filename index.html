@@ -195,7 +195,7 @@
 <body>
     <div class="container">
         <h1>画像分割ツール</h1>
-        <p class="subtitle">縦2000px × 幅900pxで自動分割します</p>
+        <p class="subtitle">幅900px × 縦2000pxで自動分割します</p>
 
         <div class="upload-area" id="uploadArea">
             <input type="file" id="fileInput" accept="image/*">
@@ -225,8 +225,8 @@
     </div>
 
     <script>
-        const TILE_WIDTH = 2000;
-        const TILE_HEIGHT = 900;
+        const TILE_WIDTH = 900;
+        const TILE_HEIGHT = 2000;
 
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
