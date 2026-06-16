@@ -293,23 +293,22 @@
             for (let i = 0; i < tilesNeeded; i++) {
                 const y = i * TILE_HEIGHT;
                 const tileHeight = Math.min(TILE_HEIGHT, imgHeight - y);
+                const canvasWidth = Math.min(TILE_WIDTH, imgWidth);
 
                 // 各タイル用のCanvasを作成
                 const tileCanvas = document.createElement('canvas');
-                tileCanvas.width = TILE_WIDTH;
+                tileCanvas.width = canvasWidth;
                 tileCanvas.height = tileHeight;
 
                 const ctx = tileCanvas.getContext('2d');
 
-                // 元の画像からタイル部分を描画
-                const drawWidth = Math.min(TILE_WIDTH, imgWidth);
-
+                // 元の画像からタイル部分を描画（幅900を超えた場合は縮小）
                 ctx.drawImage(
                     originalImage,
                     0, y,
-                    drawWidth, tileHeight,
+                    imgWidth, tileHeight,
                     0, 0,
-                    drawWidth, tileHeight
+                    canvasWidth, tileHeight
                 );
 
                 tiles.push({
