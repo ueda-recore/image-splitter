@@ -238,6 +238,7 @@
 
         let originalImage = null;
         let tiles = [];
+        let originalFileName = '';
 
         // ドラッグ&ドロップ
         uploadArea.addEventListener('click', () => fileInput.click());
@@ -269,6 +270,7 @@
         });
 
         function processFile(file) {
+            originalFileName = file.name.split('.').slice(0, -1).join('.');
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
@@ -367,7 +369,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `tile_${index + 1}.${extension}`;
+                a.download = `${originalFileName}_${index + 1}.${extension}`;
                 a.click();
                 URL.revokeObjectURL(url);
             }, mimeType, format === 'jpeg' ? 0.95 : undefined);
@@ -387,6 +389,7 @@
             tilesContainer.innerHTML = '';
             tiles = [];
             originalImage = null;
+            originalFileName = '';
         });
     </script>
 </body>
